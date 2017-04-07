@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "preinstall": "cd anno; npm install",
+    "start": "bash ./start-ubhd-server.sh"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
