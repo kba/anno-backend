@@ -8,4 +8,4 @@ export ANNO_STORE='@kba/anno-store-file'
 export ANNO_PORT=3000
 export ANNO_STORE_FILE="$PWD/store.nedb"
 
-cd anno/anno-server && ./dev-server.sh
+cd anno/anno-server && make watch
