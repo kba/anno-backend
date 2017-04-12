@@ -10,6 +10,12 @@ npm start
 
 Adapt ./start-ubhd-server.sh for configuration
 
+* Users are defined in `users.yml` c.f. [anno-user](https://gitlab.ub.uni-heidelberg.de/kba/anno/tree/master/anno-mw-user-static)
+* Rules are defined in `acl.yml` c.f. [anno-user](https://gitlab.ub.uni-heidelberg.de/kba/anno/tree/master/anno-mw-user-static)
+
+
+
+
 ## NOSPC error
 
 ```sh
