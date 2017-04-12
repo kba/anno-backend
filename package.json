@@ -4,6 +4,10 @@
     "preinstall": "cd anno; npm install",
     "start": "bash ./start-ubhd-server.sh"
   },
+  "dependencies": {
+      "@kba/anno-mw-user-static": "^0.0.1"
+      "@kba/anno-mw-acl-static": "^0.0.1"
+  },
   "devDependencies": {
     "nodemon": "^1.11.0"
   }

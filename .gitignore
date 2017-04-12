@@ -3,3 +3,5 @@ npm-debug.log
 store.nedb
 *~
 store.nedb*
+acl.json
+users.json
