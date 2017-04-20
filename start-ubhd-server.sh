@@ -15,7 +15,7 @@ export ANNO_STORE='@kba/anno-store-file'
 export ANNO_PORT=3000
 export ANNO_STORE_FILE="$PWD/store.nedb"
 
-export ANNO_OPENAPI_HOST="http://serv42.ub.uni-heidelberg.de"
+export ANNO_OPENAPI_HOST="serv42.ub.uni-heidelberg.de"
 export ANNO_OPENAPI_BASEPATH="/kba"
 
 export ANNO_BASE_URL='http://serv42.ub.uni-heidelberg.de/kba'
