@@ -16,8 +16,8 @@ export ANNO_PORT=3000
 export ANNO_STORE_FILE="$PWD/store.nedb"
 
 export ANNO_OPENAPI_HOST="serv42.ub.uni-heidelberg.de"
-export ANNO_OPENAPI_BASEPATH="/kba"
+export ANNO_OPENAPI_BASEPATH="/anno"
 
-export ANNO_BASE_URL='http://serv42.ub.uni-heidelberg.de/kba'
-export ANNO_BASE_PATH='/kba'
+export ANNO_BASE_URL='http://serv42.ub.uni-heidelberg.de'
+export ANNO_BASE_PATH='/anno'
 cd anno/anno-server && make watch
