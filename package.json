@@ -1,7 +1,8 @@
 {
+  "name": "anno-backend-ubhd",
   "private": true,
   "scripts": {
-    "preinstall": "cd anno; npm install",
+    "preinstall": "cd anno-common; lerna exec npm link",
     "start": "bash ./start-ubhd-server.sh"
   },
   "dependencies": {
