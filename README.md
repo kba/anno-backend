@@ -27,7 +27,7 @@ Note the use of `--link`. If you get warnings about modules not being found, tha
 ### Start the server
 npm start
 
-Adapt ./start-ubhd-server.sh for configuration
+Adapt `./start.sh` for configuration
 
 * Users are defined in `users.yml` c.f.
   [anno-user](https://gitlab.ub.uni-heidelberg.de/Webservices/anno-common/tree/master/anno-mw-user-static)

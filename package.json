@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "preinstall": "cd anno-common; lerna exec npm link",
-    "start": "bash ./start-ubhd-server.sh"
+    "start": "bash ./start.sh"
   },
   "dependencies": {
       "@kba/anno-mw-user-static": "^0.0.1",

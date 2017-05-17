@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATH="./node_modules/.bin:./anno/scripts:$PATH"
+PATH="./node_modules/.bin:./anno-common/scripts:$PATH"
 
 echo "Compiling ACL YAML"
 YML2JSON_MIN=true yml2json.js acl.yml
@@ -20,4 +20,4 @@ export ANNO_OPENAPI_BASEPATH="/anno"
 
 export ANNO_BASE_URL='http://serv42.ub.uni-heidelberg.de'
 export ANNO_BASE_PATH='/anno'
-cd anno/anno-server && make watch
+cd anno-common/anno-server && make watch
