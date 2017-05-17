@@ -1,17 +1,21 @@
-# ubhd-anno-server
+# anno-backend-ubhd
 
-Needs access to github:kba/anno
+Needs access to git@gitlab.ub.uni-heidelberg.de:Webservices/anno-common
 
 ```sh
 git clone --recursive
+# if not cloned recursively:
+# git submodule update --init
 npm install
 npm start
 ```
 
 Adapt ./start-ubhd-server.sh for configuration
 
-* Users are defined in `users.yml` c.f. [anno-user](https://gitlab.ub.uni-heidelberg.de/kba/anno/tree/master/anno-mw-user-static)
-* Rules are defined in `acl.yml` c.f. [anno-user](https://gitlab.ub.uni-heidelberg.de/kba/anno/tree/master/anno-mw-user-static)
+* Users are defined in `users.yml` c.f.
+  [anno-user](https://gitlab.ub.uni-heidelberg.de/Webservices/anno-common/tree/master/anno-mw-user-static)
+* Rules are defined in `acl.yml` c.f.
+  [anno-acl](https://gitlab.ub.uni-heidelberg.de/Webservices/anno-common/tree/master/anno-mw-user-static)
 
 
 
