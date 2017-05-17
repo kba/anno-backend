@@ -2,13 +2,30 @@
 
 Needs access to git@gitlab.ub.uni-heidelberg.de:Webservices/anno-common
 
+## Setup
+
+### Clone the repository
+
 ```sh
 git clone --recursive
-# if not cloned recursively:
-# git submodule update --init
-npm install
-npm start
 ```
+
+If accidently not cloned recursively, run
+
+```sh
+git submodule update --init
+```
+
+### Install dependencies
+
+```js
+npm install --link
+```
+
+Note the use of `--link`. If you get warnings about modules not being found, that's the cause.
+
+### Start the server
+npm start
 
 Adapt ./start-ubhd-server.sh for configuration
 

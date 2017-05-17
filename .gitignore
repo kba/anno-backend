@@ -5,3 +5,4 @@ store.nedb
 store.nedb*
 acl.json
 users.json
+lerna-debug.log
