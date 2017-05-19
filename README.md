@@ -19,13 +19,14 @@ git submodule update --init
 ### Install dependencies
 
 ```js
-npm install --link
+npm install
 ```
 
-Note the use of `--link`. If you get warnings about modules not being found, that's the cause.
-
 ### Start the server
+
+```
 npm start
+```
 
 Adapt `./start.sh` for configuration
 
@@ -33,8 +34,6 @@ Adapt `./start.sh` for configuration
   [anno-user](https://gitlab.ub.uni-heidelberg.de/Webservices/anno-common/tree/master/anno-mw-user-static)
 * Rules are defined in `acl.yml` c.f.
   [anno-acl](https://gitlab.ub.uni-heidelberg.de/Webservices/anno-common/tree/master/anno-mw-user-static)
-
-
 
 
 ## NOSPC error
