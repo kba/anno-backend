@@ -2,14 +2,8 @@
   "name": "anno-backend-ubhd",
   "private": true,
   "scripts": {
-    "preinstall": "cd anno-common; lerna exec npm link",
+    "preinstall": "make preinstall",
     "start": "bash ./start.sh"
-  },
-  "dependencies": {
-      "@kba/anno-mw-user-static": "^0.0.1",
-      "@kba/anno-mw-acl-static": "^0.0.1",
-      "@kba/anno-store-post-creator": "^0.0.1",
-      "@kba/anno-store-mongodb": "^0.0.1"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
