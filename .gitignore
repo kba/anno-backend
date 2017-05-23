@@ -1,8 +1,8 @@
 node_modules
-npm-debug.log
+*-debug.log
 store.nedb
 *~
 store.nedb*
 acl.json
 users.json
-lerna-debug.log
+collections.json

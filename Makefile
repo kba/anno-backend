@@ -1,4 +1,5 @@
 DEPS = \
+    node_modules/@kba/anno-errors\
     node_modules/@kba/anno-pre-user-static\
     node_modules/@kba/anno-pre-acl-static\
     node_modules/@kba/anno-pre-service\
