@@ -1,9 +1,6 @@
 DEPS = \
     node_modules/@kba/anno-errors\
-    node_modules/@kba/anno-pre-user-static\
-    node_modules/@kba/anno-pre-acl-static\
-    node_modules/@kba/anno-pre-service\
-    node_modules/@kba/anno-post-creator-static\
+    node_modules/@kba/anno-rights\
     node_modules/@kba/anno-store-mongodb
 
 bootstrap:
