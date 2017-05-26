@@ -12,8 +12,8 @@ YML2JSON_MIN=true yml2json.js collections.yml
 export ANNO_COLLECTION_DATA="$(cat collections.json)"
 
 export ANNO_SERVER_JWT_SECRET='@9g;WQ_wZECHKz)O(*j/pmb^%$IzfQ,rbe~=dK3S6}vmvQL;F;O]i(W<nl.IHwPlJ)<y8fGOel$(aNbZ'
-export ANNO_STORE_HOOKS_PRE='@kba/anno-rights:PreUserFile,@kba/anno-rights:PreAclFile'
-export ANNO_STORE_HOOKS_POST='@kba/anno-rights:CreatorInjectorFile'
+export ANNO_STORE_HOOKS_PRE='@kba/anno-plugins:PreUserFile,@kba/anno-plugins:PreAclFile'
+export ANNO_STORE_HOOKS_POST='@kba/anno-plugins:CreatorInjectorFile'
 export ANNO_STORE='@kba/anno-store-mongodb'
 export ANNO_PORT=3000
 
