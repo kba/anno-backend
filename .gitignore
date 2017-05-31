@@ -6,3 +6,4 @@ store.nedb*
 acl.json
 users.json
 collections.json
+profile.sh
