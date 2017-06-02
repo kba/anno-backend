@@ -7,5 +7,10 @@ acl.json
 users.json
 collections.json
 profile.sh
-dist/
 backup
+dist/*
+!dist/axios.min.js
+!dist/jquery-ui.min.js
+!dist/quill.js
+!dist/vue.js
+!dist/vuex.js
