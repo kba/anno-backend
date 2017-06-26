@@ -13,12 +13,12 @@ apps:
       ANNO_COLLECTION_FILE: "./collections.yml"
       ANNO_MONGODB_PORT: 27017
       ANNO_SERVER_AUTH: 'plain'
-      ANNO_STORE_HOOKS_OPTIONS: |
+      ANNO_MIDDLEWARE_PLUGINS: >
         @kba/anno-plugins:PreCollectionFile,
-      ANNO_STORE_HOOKS_PRE: |
+      ANNO_STORE_HOOKS_PRE: >
         @kba/anno-plugins:PreUserFile,
         @kba/anno-plugins:PreAclFile
-      ANNO_STORE_HOOKS_POST: |
+      ANNO_STORE_HOOKS_POST: >
         @kba/anno-plugins:CreatorInjectorFile
       ANNO_STORE: '@kba/anno-store-file'
       ANNO_PORT: 3000
