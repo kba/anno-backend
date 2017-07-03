@@ -1,3 +1,5 @@
+PATH := ./node_modules/.bin:$(PATH)
+
 MONGODUMP = mongodump --db $(ANNO_MONGODB_NAME)
 MONGORESTORE = mongorestore --db $(ANNO_MONGODB_NAME)
 
@@ -22,7 +24,8 @@ $(DEPS): node_modules/@kba/%: anno-common/%
 preinstall: bootstrap $(DEPS)
 
 start:
-	./start.sh
+	pm2 kill
+	pm2 --no-daemon start pm2.prod.yml
 
 backup:
 	$(MONGODUMP) --out $(MONGODB_BACKUP)
