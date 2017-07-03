@@ -14,6 +14,22 @@ DEPS = \
     node_modules/@kba/anno-plugins\
     node_modules/@kba/anno-store-mongodb
 
+help:
+	@echo "Targets:"
+	@echo ""
+	@echo "  bootstrap    Update anno-common after adding/removing deps"
+	@echo "  preinstall   Run before setting up the server"
+	@echo "  start        Start the server"
+	@echo "  backup       Create a backup"
+	@echo "  restore      Restore the backup given as MONGODB_BACKUP"
+	@echo ""
+	@echo "Variables"
+	@echo ""
+	@echo "  MONGODB_BACKUP"
+	@echo "  ANNO_MONGODB_NAME    MongoDB database where annotations are stored"
+	@echo "  BACKUP_PATH          Folder to contain backups"
+	@echo "  BACKUP               Basename of the backup to create/restore. Defaults to timestamp ($(BACKUP))"
+
 bootstrap:
 	cd anno-common; npm install; ./node_modules/.bin/lerna bootstrap
 
