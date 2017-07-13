@@ -1,0 +1,1 @@
+print(db.anno.count({}))

@@ -1,10 +1,11 @@
 PATH := ./node_modules/.bin:$(PATH)
 
+MONGO_RUNNING = mongo --quiet $(ANNO_MONGODB_NAME) ping.js
 MONGODUMP = mongodump --db $(ANNO_MONGODB_NAME)
-MONGORESTORE = mongorestore --db $(ANNO_MONGODB_NAME)
+MONGORESTORE = mongorestore
 
 ANNO_MONGODB_NAME = 'anno'
-BACKUP_PATH = $(PWD)/backup
+BACKUP_PATH = /usr/local/AnnotationService/backup
 
 BACKUP = $(shell date +"%Y-%m-%d_%H-%M-%S")
 MONGODB_BACKUP = $(BACKUP_PATH)/$(BACKUP)
@@ -43,6 +44,7 @@ start:
 	pm2 kill
 	pm2 --no-daemon start pm2.prod.yml
 
+.PHONY: backup
 backup:
 	$(MONGODUMP) --out $(MONGODB_BACKUP)
 
