@@ -7,7 +7,7 @@ MONGORESTORE = mongorestore
 ANNO_MONGODB_NAME = 'anno'
 BACKUP_PATH = /usr/local/AnnotationService/backup
 
-BACKUP = $(shell date +"%Y-%m-%d_%H-%M-%S")
+BACKUP = $(shell date +"anno.%Y-%m-%d_%H-%M-%S")
 MONGODB_BACKUP = $(BACKUP_PATH)/$(BACKUP)
 
 DEPS = \
@@ -23,6 +23,7 @@ help:
 	@echo "  start        Start the server"
 	@echo "  backup       Create a backup"
 	@echo "  restore      Restore the backup given as MONGODB_BACKUP"
+	@echo "  prune        Remove old backups, older than seven days"
 	@echo ""
 	@echo "Variables"
 	@echo ""
@@ -46,8 +47,25 @@ start:
 
 .PHONY: backup
 backup:
+	@echo "# Backing up $(MONGODB_BACKUP)"
 	$(MONGODUMP) --out $(MONGODB_BACKUP)
+	cd backup && tar cf $(MONGODB_BACKUP).tar $(BACKUP)
+	gzip $(MONGODB_BACKUP).tar
+	rm -rf $(MONGODB_BACKUP)
+
+prune:
+	@echo "# Pruning old backups"
+	@find $(BACKUP_PATH) -mindepth 1 -maxdepth 1 -name "anno.*" -mtime +7 -exec rm -rvf {} \;
 
 restore:
-	@if [ ! -e "$(MONGODB_BACKUP)" ];then echo "No such folder $(MONGODB_BACKUP)\nUsage: make $@ BACKUP=<backup-timestamp>" ; exit 2 ;fi
+	@echo "# Restoring $(MONGODB_BACKUP)"
+	@if [ ! -e "$(MONGODB_BACKUP)" ];then \
+		if [ -e "$(MONGODB_BACKUP).tar.gz" ];then \
+			cd backup && tar xvf "$(MONGODB_BACKUP).tar.gz"; \
+		fi; \
+		if [ ! -e "$(MONGODB_BACKUP)" ];then \
+			echo "No such folder $(MONGODB_BACKUP)\nUsage: make $@ BACKUP=<backup-timestamp>" ; \
+			exit 2; \
+		fi; \
+	fi
 	$(MONGORESTORE) $(MONGODB_BACKUP)
