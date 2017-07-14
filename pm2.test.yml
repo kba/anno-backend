@@ -1,0 +1,20 @@
+apps:
+  - name:   "anno-test"
+    script: "anno-common/anno-server/server.js"
+    watch:  ['anno-common/*/*.js', 'anno-common/*/*.js']
+    ignore_watch: ["node_modules"]
+    autorestart: true
+    no_daemon: true
+    restart_delay: 1000
+    env:
+      ANNO_LOGLEVEL: silly
+      ANNO_ENABLE_JWT_AUTH: false
+      ANNO_STORE_HOOKS_POST: >
+        @kba/anno-plugins:CreatorInjectorFile
+      ANNO_USER_FILE: "./users.yml"
+      ANNO_STORE: '@kba/anno-store-file'
+      ANNO_PORT: 33321
+      ANNO_OPENAPI_HOST: "localhost:33321"
+      ANNO_OPENAPI_BASEPATH: "/anno"
+      ANNO_BASE_URL: 'https://localhost:33321'
+      ANNO_BASE_PATH: '/anno'

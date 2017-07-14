@@ -2,7 +2,6 @@
   "name": "anno-backend-ubhd",
   "private": true,
   "scripts": {
-    "preinstall": "make preinstall",
     "start": "bash ./start.sh"
   },
   "devDependencies": {

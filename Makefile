@@ -10,16 +10,16 @@ BACKUP_PATH = /usr/local/AnnotationService/backup
 BACKUP = $(shell date +"anno.%Y-%m-%d_%H-%M-%S")
 MONGODB_BACKUP = $(BACKUP_PATH)/$(BACKUP)
 
-DEPS = \
-    node_modules/@kba/anno-errors\
-    node_modules/@kba/anno-plugins\
-    node_modules/@kba/anno-store-mongodb
+DEPS = node_modules/@kba/anno-errors        \
+       node_modules/@kba/anno-store-file    \
+       node_modules/@kba/anno-store-mongodb \
+       node_modules/@kba/anno-plugins
 
 help:
 	@echo "Targets:"
 	@echo ""
 	@echo "  bootstrap    Update anno-common after adding/removing deps"
-	@echo "  preinstall   Run before setting up the server"
+	@echo "  install      Run before setting up the server"
 	@echo "  start        Start the server"
 	@echo "  backup       Create a backup"
 	@echo "  restore      Restore the backup given as MONGODB_BACKUP"
@@ -35,11 +35,13 @@ help:
 bootstrap:
 	cd anno-common; npm install; ./node_modules/.bin/lerna bootstrap
 
+.PHONY: $(DEPS)
 $(DEPS): node_modules/@kba/%: anno-common/%
 	cd "$<"; npm link
 	npm link "@kba/$*"
 
-preinstall: bootstrap $(DEPS)
+install: bootstrap $(DEPS)
+	npm install
 
 start:
 	pm2 kill

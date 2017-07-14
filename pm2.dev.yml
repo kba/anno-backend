@@ -22,7 +22,7 @@ apps:
       ANNO_STORE_HOOKS_POST: >
         @kba/anno-plugins:CreatorInjectorFile
       ANNO_STORE: '@kba/anno-store-file'
-      ANNO_PORT: 3000
+      ANNO_PORT: 33321
       ANNO_OPENAPI_HOST: "localhost:3000"
       ANNO_OPENAPI_BASEPATH: "/anno"
       ANNO_BASE_URL: 'https://localhost:3000'
