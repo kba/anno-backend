@@ -1,0 +1,14 @@
+'anonymous@example.org':
+  public:
+    displayName: 'Universitätsbibliothek Heidelberg'
+    icon: 'https://www.gravatar.com/avatar/0aaa555050501234abcd?d=retro'
+
+'john.doe@example.com':
+  alias:
+    - 'https://my-idp.net!https://my-sp.net!VjuYKaMOQlfT1QA7w9geTRUATmI='
+  public:
+    displayName: 'John Doe'
+    icon: 'https://www.gravatar.com/avatar/0aaa555050501234abcd?d=identicon'
+  rules:
+    - [{collection: 'default'}, {role: 'creator'}]
+    - [{collection: 'ebooks'}, {role: 'moderator', public.displayName: 'John D. (Moderator)`}]

@@ -1,0 +1,6 @@
+default:
+  secret: 's00pers3cr3t!'
+diglit:
+  metadataEndpoint: 'https://digi.my.host.net/cgi-bin/annoMetadata'
+  secret: '4lso s00pers3cr3T!!'
+  purlTemplate: '{{ targetId }}/{{ slug }}'

@@ -1,0 +1,35 @@
+- - user.inactive: true
+  - false
+  - "Inactive users are not allowed to do anything"
+
+- - method: {$or: ['init', 'aclCheck', 'get', 'search']}
+  - true
+  - "Allow store initialization, rights checks, search and retrieval for anyone by default"
+
+- - user.role: {$exists: false}
+  - false
+  - "Disallow users without a role"
+
+- - method: {$or: ['create', 'revise']}
+    user.role: 'moderator'
+  - true
+  - "Allow moderators to revise / reply to any annotations"
+
+- - method: 'create'
+    user.role: 'creator'
+  - true
+  - "Allow users with 'create' role to create new annotations and reply to existing annotations"
+
+- - method: {$or: ['revise', 'create']}
+    anno.creator: {$exists: true}
+    user.id: {$exists: true}
+    $or:
+    - anno.creator: {$ref: '/user/id'}
+    - anno.creator.id: {$ref: '/user/id'}
+  - true
+  - "Allow users to revise their own annotations / Allow users to reply to their own annotations"
+
+# Default Rule. Must be last
+- - {}
+  - false
+  - "Fallback to disallow any interaction"
