@@ -17,7 +17,19 @@ and scale the service.
 	* [Test the setup](#test-the-setup)
 	* [Running productively](#running-productively)
 * [Configuration](#configuration)
+	* [Collections](#collections)
+		* [`secret`](#secret)
+		* [`purlTemplate`](#purltemplate)
+		* [`metadataEndpoint`](#metadataendpoint)
 	* [Users](#users)
+		* [`public`](#public)
+		* [`public.displayName`](#publicdisplayname)
+		* [`public.icon`](#publicicon)
+		* [`alias`](#alias)
+		* [`role`](#role)
+		* [`rules`](#rules)
+		* [Example user](#example-user)
+	* [ACL](#acl)
 * [Troubleshooting](#troubleshooting)
 	* [NOSPC error](#nospc-error)
 
@@ -112,6 +124,10 @@ as users, collections and access rules can be placed in files.
 
 ### Collections
 
+Collections can be defined either statically or in a JSON or YAML file (must end in `.json` or `.yml` resp.).
+
+The default collection is named `default`.
+
 A collection is a distinct set of annotations with its own configuration. You
 could use separate collections for separate services or authentication realms.
 
@@ -135,17 +151,95 @@ You can use the following variables:
 * `slug`: The identifier of the annotation, i.e. the last URL segment
 * `targetId`: Determine the target of the annotation, using the algorithm in [anno-queries](https://github.com/kba/anno/tree/master/anno-queries#targetid)
 
+#### `metadataEndpoint`
+
+`metadataEndpoint` is the URL from which metadata can be gathered about this
+collection. This is necessary for ACL rules based on target-specific metadata.
+
 ### Users
 
 Users can be defined either statically or in a JSON or YAML file (must end in `.json` or `.yml` resp.).
 
-Users are defined in `users.yml`
+There is no default user.
 
-### Access Control Rules
+Users are key-value pairs, where the key is the primary ID as provided by an
+authentication backend (the `user` element in the context). But see [`alias`](#alias) for additional IDs.
 
-* Rules are defined in `acl.yml` c.f.
-  [anno-acl](https://gitlab.ub.uni-heidelberg.de/Webservices/anno-common/tree/master/anno-mw-user-static)
 
+#### `public`
+
+`public` is the data about a user that is supposed to be publicly visible. With
+the `CreatorInjector` plugin, the creator of annotations is replaced with this
+information.
+
+See [anno-frontend](https://github.com/kba/anno-frontend) for how this
+information is used.
+
+#### `public.displayName`
+
+`displayName` is the name as it is supposed to be displayed in the browser.
+
+#### `public.icon`
+
+`icon` is the URL of an avatar to be displayed next to the name. You could use a gravatar-URL here.
+
+#### `alias`
+
+`alias` contains additional IDs for this user, e.g. if users from different
+authentication realms are to be mapped to the same user.
+
+Can be an array or a string.
+
+#### `role`
+
+`role` is the role of the user, corresponding to the roles defined in the [access control rules](#acl)
+
+**NOTE**: If `role` is set globally in the user config, it will be the default. It is strongly recommended to set the `role` in the [`rules`](#rules)
+
+#### `rules`
+
+`rules` is an array of rules.
+
+A rule is an ordered pair of *condition* and *result*.
+
+*condition* is a query on the context of the store operation, in the syntax of a Mongo/sift.js query.
+
+*result* is an object to partially override the user configuration **if *condition* is met**.
+
+E.g. The rule `[{collection: 'foo'}, {role: 'bar'}]` will match only for
+requests on the `foo` collection and in these cases will set the role of the
+particular user to `bar`. 
+
+#### Example user
+
+```
+'john.doe@example.com':
+  alias:
+    - 'https://idp.uni-heidelberg.de!https://anno.ub.uni-heidelberg.de/shibboleth!VjuYKaMOQlfT1QA7w9geTrUATmI='
+  public:
+    displayName: 'John Doe'
+    icon: 'https://gitlab.ub.uni-heidelberg.de/uploads/system/user/avatar/17/avatar.png'
+  rules:
+    - [{collection: 'default'}, {role: 'create'}]
+    - [{collection: 'ebooks'}, {role: 'moderator', public.displayName: 'John D. (Moderator)`}]
+```
+
+### ACL
+
+ACL (access control list) rules are an array of ACL rules.
+
+An ACL rule is a *condition*-*result*-*description* triple.
+
+The *description* is optional and mostly for debugging and self-documentation.
+
+The *condition* is applied to the context for **every operation**. As with
+[user rules](#rules) the syntax is the same as in Mongo/sift.js queries. See
+[sift-rule](https://github.com/kba/sift-rule) for rule mechanics.
+
+The *result* is a boolean value:
+
+* `true` or any other truthy value: The operation shall continue
+* `false`, `undefined` or `0`: The operation shall not continue
 
 ## Troubleshooting
 
