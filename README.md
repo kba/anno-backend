@@ -220,7 +220,7 @@ particular user to `bar`.
     displayName: 'John Doe'
     icon: 'https://gitlab.ub.uni-heidelberg.de/uploads/system/user/avatar/17/avatar.png'
   rules:
-    - [{collection: 'default'}, {role: 'create'}]
+    - [{collection: 'default'}, {role: 'creator'}]
     - [{collection: 'ebooks'}, {role: 'moderator', public.displayName: 'John D. (Moderator)`}]
 ```
 
