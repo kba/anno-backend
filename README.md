@@ -241,6 +241,57 @@ The *result* is a boolean value:
 * `true` or any other truthy value: The operation shall continue
 * `false`, `undefined` or `0`: The operation shall not continue
 
+## Deploy
+
+We recommend to run the server locally with a high port number and proxy
+outside traffic through a webserver like Apache httpd or nginx.
+
+We recommend to run the annotation server in its own subdomain like
+`anno.yourhost.net`.
+
+### Apache
+
+Let's assume:
+
+* The [anno-backend](https://github.com/kba/anno-backend) repository has been
+  cloned to `/usr/local/anno-backend`
+* You want to deploy the annotation server on `anno.example.org` The annotation
+* route (i.e. the [Web Annotation Protocol](https://www.w3.org/TR/annotation-protocol/)-conformant
+  part) is to run at `http://anno.example.org/anno`
+
+Add this to your Apache configuration:
+
+```apache
+<VirtualHost anno.example.org:80>
+
+  ServerName anno.example.org
+  DocumentRoot /usr/local/anno-backend/dist
+
+  <Location /anno>
+  ProxyPass http://localhost:3000 retry=0
+  </Location>
+
+</VirtualHost>
+```
+
+Set up `pm2.prod.yml` to match the host, e.g.
+
+```yaml
+    # ...
+    env:
+      # ...
+      ANNO_OPENAPI_HOST: "anno.example.org"
+      ANNO_OPENAPI_BASEPATH: "/anno"
+      ANNO_BASE_URL: 'https://anno.example.org'
+      ANNO_BASE_PATH: '/anno'
+```
+
+Start the server:
+
+```sh
+make start
+```
+
 ## Troubleshooting
 
 ### NOSPC error
