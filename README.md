@@ -78,6 +78,8 @@ git clone --recursive https://github.com/kba/anno anno-common
 
 ### Install dependencies
 
+(Unless specified otherwise, all commands are to be run in the root of this repository, the same directory as this README)
+
 ```sh
 make install
 ```
