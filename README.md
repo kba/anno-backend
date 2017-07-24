@@ -63,11 +63,10 @@ these are often out-of-date.
 
 Make sure that the `anno` monorepo is located at `./anno-common`.
 
-If you have access to [UB Heidelberg's Gitlab instance](https://gitlab.ub.uni-heidelberg.de),
-just clone recursively / initialize submodules.
+It is provided as a submodule which you can initialize after shallow (non-recursive) clone with
 
 ```sh
-git submodule update --init
+git submodule update --init --recursive
 ```
 
 Otherwise, clone the repository recursively from Github:
