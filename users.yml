@@ -11,4 +11,4 @@
     icon: 'https://www.gravatar.com/avatar/0aaa555050501234abcd?d=identicon'
   rules:
     - [{collection: 'default'}, {role: 'creator'}]
-    - [{collection: 'ebooks'}, {role: 'moderator', public.displayName: 'John D. (Moderator)`}]
+    - [{collection: 'ebooks'}, {role: 'moderator', public.displayName: 'John D. (Moderator)'}]
