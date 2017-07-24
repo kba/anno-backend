@@ -12,6 +12,7 @@ MONGODB_BACKUP = $(BACKUP_PATH)/$(BACKUP)
 
 DEPS = node_modules/@kba/anno-errors        \
        node_modules/@kba/anno-store-file    \
+       node_modules/@kba/anno-util-loaders  \
        node_modules/@kba/anno-store-mongodb \
        node_modules/@kba/anno-plugins
 
