@@ -20,6 +20,7 @@ help:
 	@echo ""
 	@echo "  bootstrap    Update anno-common after adding/removing deps"
 	@echo "  install      Run before setting up the server"
+	@echo "  symlink      'npm link' the necessary packages"
 	@echo "  start        Start the server"
 	@echo "  backup       Create a backup"
 	@echo "  restore      Restore the backup given as MONGODB_BACKUP"
@@ -35,12 +36,13 @@ help:
 bootstrap:
 	cd anno-common; npm install; ./node_modules/.bin/lerna bootstrap
 
-.PHONY: $(DEPS)
+.PHONY: $(DEPS) symlink bootstrap install start
+symlink: $(DEPS)
 $(DEPS): node_modules/@kba/%: anno-common/%
 	cd "$<"; npm link
 	npm link "@kba/$*"
 
-install: bootstrap $(DEPS)
+install: bootstrap symlink
 	npm install
 
 start:
