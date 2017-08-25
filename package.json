@@ -8,6 +8,9 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
-    "pm2": "^2.5.0"
+    "envyconf": "0.0.5",
+    "es6-promise-polyfill": "^1.2.0",
+    "pm2": "^2.5.0",
+    "slugid": "^1.1.0"
   }
 }
