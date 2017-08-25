@@ -13,4 +13,7 @@ dist/*
 !dist/jquery-ui.min.js
 !dist/quill.js
 !dist/vue.js
+!dist/vue.min.js
 !dist/vuex.js
+!dist/promise.min.js
+!dist/babel-polyfill.min.js
