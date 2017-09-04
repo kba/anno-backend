@@ -17,3 +17,4 @@ dist/*
 !dist/vuex.js
 !dist/promise.min.js
 !dist/babel-polyfill.min.js
+!dist/authorities-client.js
