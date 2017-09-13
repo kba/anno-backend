@@ -118,6 +118,24 @@ See [`pm2.prod.yml`](./pm2.prod.yml):
 * After every store operation (`ANNO_STORE_HOOKS_POST`):
   * Replace the `creator` of every annotation found with the user in the user file, if found (`@kba/anno-plugins:CreatorInjectorFile`)
 
+When running productively, create a dedicated user for the annotation system (e.g. `anno`).
+
+Then setup pm2 to start with your init system.
+
+As the annotation user, run `pm2 startup`, you should get output like this:
+
+```
+[PM2] Init System found: systemd
+[PM2] You have to run this command as root. Execute the following command:
+sudo env PATH=$PATH:/usr/bin /home/anno/build/github.com/anno/anno/anno-server/node_modules/pm2/bin/pm2 startup systemd -u anno --hp /home/anno
+```
+
+Running this sudo command will setup a unit file for a service running pm2 for
+the anno user. It should restart when the system is rebooted
+
+
+### Run with init system daemon
+
 ## Configuration
 
 Basic configuration is done using environment variables. More complex data such
