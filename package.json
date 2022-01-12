@@ -11,7 +11,7 @@
     "@ubhd/authorities-client": "^0.3.1",
     "envyconf": "0.0.5",
     "es6-promise-polyfill": "^1.2.0",
-    "pm2": "^2.5.0",
+    "pm2": "^3.0.0",
     "slugid": "^1.1.0"
   }
 }
